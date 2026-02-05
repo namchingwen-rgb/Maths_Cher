@@ -31,7 +31,7 @@ Enhance the test generation to include blank fields to fill in answers for every
 2.  **Modify `QuestionGenerator` (Completed):** Updated `QuestionGenerator` to calculate and store the correct answer for each question. This is crucial for self-scoring.
 3.  **Modify `QuestionPaper` Custom Element (Completed):** Updated the `QuestionPaper` custom element to render blank input fields for user answers, and store user answers in the DOM or a data structure associated with the questions.
 4.  **Integrate Test Start Logic (Completed):** Linked `startTimerBtn` to initiate the test: generate questions, display them with input fields, enable inputs, and start the timer.
-5.  **Integrate Test End Logic (Completed):** Linked `endTimerBtn` to conclude the test: stopped the timer, disabled inputs, calculated the score, and displayed results. (This step was completed as part of the previous modification that introduced `stopTimer` and `scoreTest` functions).
-6.  **Implement Self-Scoring (Completed):** Developed the logic to compare user-provided answers with the correct answers and compute the final score. (This step was completed as part of the previous modification that introduced `scoreTest` function).
-7.  **Git Operations (In Progress):** Commit the changes to the git repository.
-8.  **Deployment (Pending):** Deploy the application to Cloudflare.
+5.  **Integrate Test End Logic (Completed):** Linked `endTimerBtn` to conclude the test: stopped the timer, disabled inputs, calculated the score, and displayed results.
+6.  **Implement Self-Scoring (Completed):** Developed the logic to compare user-provided answers with the correct answers and compute the final score.
+7.  **Git Operations (Completed):** Committed the changes to the git repository.
+8.  **Deployment (In Progress):** Deploy the application to Cloudflare.

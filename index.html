@@ -5,34 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SG Math Quest</title>
     <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
 </head>
 <body>
     <header>
         <h1>SG Math Quest</h1>
-        <p>Your partner in mastering primary school mathematics</p>
     </header>
-
     <main>
-        <div class="controls">
-            <label for="level-select">Select Level:</label>
-            <select id="level-select">
-                <option value="1">Primary 1</option>
-                <option value="2">Primary 2</option>
-                <option value="3">Primary 3</option>
-                <option value="4">Primary 4</option>
-                <option value="5">Primary 5</option>
-                <option value="6">Primary 6</option>
-            </select>
+        <div id="setup-container">
+            <h2>Test Setup</h2>
+            <div class="options-container">
+                <div class="option">
+                    <label for="level-select">Select Level:</label>
+                    <select id="level-select">
+                        <option value="p1">Primary 1</option>
+                        <option value="p2">Primary 2</option>
+                        <option value="p3">Primary 3</option>
+                        <option value="p4">Primary 4</option>
+                        <option value="p5">Primary 5</option>
+                        <option value="p6">Primary 6</option>
+                    </select>
+                </div>
+                <div class="option">
+                    <label>Select Topics:</label>
+                    <div id="topics-checkboxes">
+                        <!-- Checkboxes will be dynamically populated based on level selection -->
+                    </div>
+                </div>
+            </div>
             <button id="generate-btn">Generate Test</button>
-            <div id="timer-display">15:00</div>
-            <button id="start-timer-btn">Start Test</button>
-            <button id="end-timer-btn" disabled>End Test</button>
         </div>
-
-        <div id="test-paper-container">
-            
+        <div id="test-container" class="hidden">
+            <div class="test-header">
+                <div id="timer">15:00</div>
+                <div class="test-controls">
+                    <button id="start-btn">Start Test</button>
+                    <button id="end-btn" disabled>End Test</button>
+                </div>
+            </div>
+            <div id="test-paper"></div>
+        </div>
+        <div id="results-container" class="hidden">
+            <h2>Test Results</h2>
+            <div id="results-summary"></div>
         </div>
     </main>
+    <script src="main.js"></script>
 </body>
 </html>

@@ -1,147 +1,161 @@
+
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #50e3c2;
-    --background-color: #f7f9fb;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f0f2f5;
     --text-color: #333;
     --card-background: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 12px;
+    --font-family: 'Poppins', sans-serif;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.6;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 2rem 1rem;
-    text-align: center;
     width: 100%;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 600;
-}
-
-header p {
-    margin: 0.5rem 0 0;
-    font-size: 1.2rem;
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px var(--shadow-color);
 }
 
 main {
     width: 100%;
     max-width: 800px;
-    padding: 2rem 1rem;
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
 
-.controls {
-    background: var(--card-background);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+#setup-container, #test-container, #results-container {
+    padding: 2rem;
 }
 
-.controls label {
-    font-size: 1.1rem;
-}
-
-.controls select, .controls button {
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.controls button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.controls button:hover {
-    background-color: #357abd;
-}
-
-#timer-display {
-    font-size: 1.5rem;
-    font-weight: bold;
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--primary-color);
-    min-width: 80px; /* Ensure consistent width */
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
-#start-timer-btn, #end-timer-btn {
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white;
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-#start-timer-btn {
-    background-color: var(--secondary-color);
+.option {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-#start-timer-btn:hover {
-    background-color: #30b090; /* Darker shade of secondary color */
+label {
+    font-weight: 600;
 }
 
-#end-timer-btn {
-    background-color: #e74c3c; /* Red color for end button */
-}
-
-#end-timer-btn:hover {
-    background-color: #c0392b; /* Darker shade of red */
-}
-
-#end-timer-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-.question-input.active-input {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25); /* Lighter primary color shadow */
-}
-
-#test-paper-container {
-    background: var(--card-background);
-    padding: 2rem;
+select, input[type="text"] {
+    padding: 0.8rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 600px) {
-    .controls {
-        flex-direction: column;
-    }
+select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
 
-    header h1 {
-        font-size: 2rem;
-    }
+#topics-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
 
-    header p {
-        font-size: 1rem;
-    }
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#timer {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.test-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+#test-paper {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.question {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+#results-summary {
+    text-align: center;
+    font-size: 1.5rem;
 }
