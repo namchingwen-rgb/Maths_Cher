@@ -1,14 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG Math Quest</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <h1>SG Math Quest</h1>
+        <p>Your partner in mastering primary school mathematics</p>
+    </header>
+
+    <main>
+        <div class="controls">
+            <label for="level-select">Select Level:</label>
+            <select id="level-select">
+                <option value="1">Primary 1</option>
+                <option value="2">Primary 2</option>
+                <option value="3">Primary 3</option>
+                <option value="4">Primary 4</option>
+                <option value="5">Primary 5</option>
+                <option value="6">Primary 6</option>
+            </select>
+            <button id="generate-btn">Generate Test</button>
+        </div>
+
+        <div id="test-paper-container">
+            
+        </div>
+    </main>
 </body>
 </html>
