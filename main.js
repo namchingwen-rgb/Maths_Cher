@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const setupContainer = document.getElementById('setup-container');
     const testContainer = document.getElementById('test-container');
     const resultsContainer = document.getElementById('results-container');
+    const resetBtn = document.getElementById('reset-btn');
 
     let timerInterval;
     let questions = [];
@@ -61,8 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateQuestion(level, topics) {
-        // This is a simplified question generator.
-        // A more robust implementation would be needed for a real application.
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         const topic = topics[Math.floor(Math.random() * topics.length)];
@@ -84,6 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'Division':
                  question.text = `What is ${num1 * num2} / ${num2}?`;
                 question.answer = num1;
+                break;
+            case 'Geometry':
+                question.text = `How many sides does a triangle have?`;
+                question.answer = 3;
+                break;
+            case 'Percentage':
+                const percentage = (Math.floor(Math.random() * 9) + 1) * 10;
+                const num = (Math.floor(Math.random() * 9) + 1) * 10;
+                question.text = `What is ${percentage}% of ${num}?`;
+                question.answer = (percentage / 100) * num;
+                break;
+            case 'Circles':
+                const radius = Math.floor(Math.random() * 10) + 1;
+                question.text = `A circle has a radius of ${radius}. What is its diameter?`;
+                question.answer = 2 * radius;
                 break;
             default:
                  question.text = `What is ${num1} + ${num2}?`;
@@ -134,10 +148,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    function resetTest() {
+        resultsContainer.classList.add('hidden');
+        setupContainer.classList.remove('hidden');
+        testContainer.classList.add('hidden');
+
+        // Reset UI elements
+        timerEl.textContent = '15:00';
+        testPaper.innerHTML = '';
+        startBtn.disabled = false;
+        endBtn.disabled = true;
+        const answerInputs = document.querySelectorAll('.answer-input');
+        answerInputs.forEach(input => {
+          input.value = '';
+          input.disabled = true;
+        });
+
+
+        // Clear questions array
+        questions = [];
+    }
+
     levelSelect.addEventListener('change', updateTopics);
     generateBtn.addEventListener('click', generateTest);
     startBtn.addEventListener('click', startTest);
     endBtn.addEventListener('click', endTest);
+    resetBtn.addEventListener('click', resetTest);
 
     updateTopics();
 });
