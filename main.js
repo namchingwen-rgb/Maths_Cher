@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const testContainer = document.getElementById('test-container');
     const resultsContainer = document.getElementById('results-container');
     const resetBtn = document.getElementById('reset-btn');
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackStatus = document.getElementById('feedback-status');
 
     let timerInterval;
     let questions = [];
@@ -152,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsContainer.classList.add('hidden');
         setupContainer.classList.remove('hidden');
         testContainer.classList.add('hidden');
+        feedbackStatus.textContent = '';
+        feedbackForm.reset();
+
 
         // Reset UI elements
         timerEl.textContent = '15:00';
@@ -169,11 +174,45 @@ document.addEventListener('DOMContentLoaded', () => {
         questions = [];
     }
 
+    async function handleFeedbackSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(feedbackForm);
+        try {
+            const response = await fetch(feedbackForm.action, {
+                method: feedbackForm.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                feedbackStatus.textContent = 'Thanks for your feedback!';
+                feedbackStatus.style.color = 'green';
+                feedbackForm.reset();
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        feedbackStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
+                    } else {
+                        feedbackStatus.textContent = 'Oops! There was a problem submitting your form';
+                    }
+                }).catch(error => {
+                    feedbackStatus.textContent = 'Oops! There was a problem submitting your form';
+                });
+                feedbackStatus.style.color = 'red';
+            }
+        } catch (error) {
+            feedbackStatus.textContent = 'Oops! There was a problem submitting your form';
+            feedbackStatus.style.color = 'red';
+        }
+    }
+
     levelSelect.addEventListener('change', updateTopics);
     generateBtn.addEventListener('click', generateTest);
     startBtn.addEventListener('click', startTest);
     endBtn.addEventListener('click', endTest);
     resetBtn.addEventListener('click', resetTest);
+    feedbackForm.addEventListener('submit', handleFeedbackSubmit);
 
     updateTopics();
 });
