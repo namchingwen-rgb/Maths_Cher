@@ -41,13 +41,26 @@ SG Math Quest is a web application designed to generate primary school mathemati
     *   Set the title to "SG Math Quest".
     *   Add a header for the application title.
     *   Create a controls section with a level selector dropdown and a "Generate Test" button.
+    *   **Add a timer display (`div id="timer-display"`) and "Start Test" (`button id="start-timer-btn"`) and "End Test" (`button id="end-timer-btn"`) buttons within the `.controls` section.**
     *   Add a container element where the generated test paper will be displayed.
 3.  **Update `style.css`:**
     *   Apply a modern design aesthetic.
     *   Style the header, controls, and test paper container.
+    *   **Add styles for the timer display and the new timer control buttons.**
     *   Ensure the layout is responsive.
 4.  **Update `main.js`:**
     *   Implement a `QuestionGenerator` class.
     *   Create a web component for the question paper.
     *   Add an event listener to the "Generate Test" button.
     *   When the button is clicked, generate questions based on the selected level and display them in the test paper container.
+    *   **Implement timer functionality:**
+        *   **Declare variables for timer display, start button, and end button.**
+        *   **Create `formatTime` function to display time as MM:SS.**
+        *   **Create `updateTimerDisplay` function to update the timer's text content.**
+        *   **Create `startTimer` function to initialize and start a 15-minute countdown, handling button states (disabling Start, enabling End) and an alert when time is up.**
+        *   **Create `stopTimer` function to stop the timer, reset button states, and display an alert with remaining time.**
+        *   **Add event listeners to "Start Test" and "End Test" buttons.**
+        *   **Ensure the timer display is updated initially on page load.**
+        *   **Reset timer to initial state if a new test is generated while the timer is not running.**
+
+

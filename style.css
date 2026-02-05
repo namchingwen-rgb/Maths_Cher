@@ -81,6 +81,45 @@ main {
     background-color: #357abd;
 }
 
+#timer-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 80px; /* Ensure consistent width */
+    text-align: center;
+}
+
+#start-timer-btn, #end-timer-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+#start-timer-btn {
+    background-color: var(--secondary-color);
+}
+
+#start-timer-btn:hover {
+    background-color: #30b090; /* Darker shade of secondary color */
+}
+
+#end-timer-btn {
+    background-color: #e74c3c; /* Red color for end button */
+}
+
+#end-timer-btn:hover {
+    background-color: #c0392b; /* Darker shade of red */
+}
+
+#end-timer-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 #test-paper-container {
     background: var(--card-background);
     padding: 2rem;

@@ -64,10 +64,62 @@ customElements.define('question-paper', QuestionPaper);
 
 const questionGenerator = new QuestionGenerator();
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generate-btn');
     const levelSelect = document.getElementById('level-select');
     const testPaperContainer = document.getElementById('test-paper-container');
+    const timerDisplay = document.getElementById('timer-display');
+    const startTimerBtn = document.getElementById('start-timer-btn');
+    const endTimerBtn = document.getElementById('end-timer-btn');
+
+    let timerInterval;
+    const totalTime = 15 * 60; // 15 minutes in seconds
+    let timeLeft = totalTime;
+    let timerRunning = false;
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay() {
+        timerDisplay.textContent = formatTime(timeLeft);
+    }
+
+    function startTimer() {
+        if (timerRunning) return;
+
+        timerRunning = true;
+        timeLeft = totalTime; // Reset timer on start
+        updateTimerDisplay();
+        startTimerBtn.disabled = true;
+        endTimerBtn.disabled = false;
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerRunning = false;
+                timerDisplay.textContent = "Time's Up!";
+                startTimerBtn.disabled = false;
+                endTimerBtn.disabled = true;
+                alert("Time's up! The test has ended.");
+            }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        startTimerBtn.disabled = false;
+        endTimerBtn.disabled = true;
+        alert(`Test ended. Time remaining: ${formatTime(timeLeft)}`);
+    }
 
     generateBtn.addEventListener('click', () => {
         const level = levelSelect.value;
@@ -77,5 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const questionPaper = document.createElement('question-paper');
         questionPaper.questions = questions;
         testPaperContainer.appendChild(questionPaper);
+
+        // Reset timer if a new test is generated while timer is not running
+        if (!timerRunning) {
+            timeLeft = totalTime;
+            updateTimerDisplay();
+        }
     });
+
+    startTimerBtn.addEventListener('click', startTimer);
+    endTimerBtn.addEventListener('click', stopTimer);
+
+    // Initial display of timer
+    updateTimerDisplay();
 });
+
