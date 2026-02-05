@@ -120,6 +120,11 @@ main {
     cursor: not-allowed;
 }
 
+.question-input.active-input {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25); /* Lighter primary color shadow */
+}
+
 #test-paper-container {
     background: var(--card-background);
     padding: 2rem;
